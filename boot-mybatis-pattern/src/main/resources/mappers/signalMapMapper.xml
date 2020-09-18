@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace를 통해 SignalMapDao 와 연결 -->
+<mapper namespace="com.boot.pattern.mapper.SignalMapMapper">
+	<resultMap id="signalMapBodyProxyResult" type="signalMapBodyProxyDomain">
+        <result column="center_id" property="centerId" />
+        <result column="center_name" property="centerName" />
+        <result column="intersection_id" property="intersectionId" />
+        <result column="intersection_name" property="intersectionName" />
+        <result column="creation_date" property="creationDate" />
+        <result column="modify_date" property="modifyDate" />
+        <result column="push_info" property="pushInfo" />
+        <result column="ref_point" property="refPoint" />
+        <result column="lane_set" property="laneSet" />
+    </resultMap>
+    
+	<select id="selectMapInfoCandidate" parameterType="signalMapBodyProxyDomain" resultMap="signalMapBodyProxyResult">
+	  	SELECT 
+	  		center_id, center_name, intersection_id, intersection_name, creation_date,
+	  		push_info, ref_point, lane_set
+	    FROM map_info_candidate
+	    <!-- WHERE
+	    	center_id = #{centerId} and intersection_id = #{intersectionId} -->
+	</select>
+  
+	<insert id="insertMapInfoCandidate" parameterType="signalMapBodyProxyDomain">
+		INSERT INTO mysql.map_info_candidate (
+	  		center_id, 
+			center_name, 
+			intersection_id, 
+			intersection_name, 
+			creation_date, 
+			modify_date, 
+			push_info, 
+			ref_point,
+			lane_set
+		) VALUES (
+			#{centerId}, 
+			#{centerName}, 
+			#{intersectionId}, 
+			#{intersectionName}, 
+			#{creationDate}, 
+			#{modifyDate}, 
+			#{pushInfo}, 
+			#{refPoint}, 
+			#{laneSet}
+		)
+	</insert>
+
+</mapper>

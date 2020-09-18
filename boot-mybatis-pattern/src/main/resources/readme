@@ -1,0 +1,12 @@
+CREATE TABLE `map_info_candidate` (
+  `center_id` VARCHAR(50) NOT NULL,
+  `center_name` VARCHAR(100) DEFAULT NULL,
+  `intersection_id` MEDIUMINT(9) NOT NULL,
+  `intersection_name` VARCHAR(100) DEFAULT NULL,
+  `creation_date` CHAR(14) NOT NULL,
+  `modify_date` CHAR(14) DEFAULT NULL,
+  `push_info` VARCHAR(5000) DEFAULT NULL,
+  `ref_point` VARCHAR(100) DEFAULT NULL,
+  `lane_set` VARCHAR(12000) DEFAULT NULL,
+  PRIMARY KEY (`center_id`,`intersection_id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8

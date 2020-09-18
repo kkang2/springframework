@@ -1,40 +1,62 @@
-package com.boot.pattern;
+package com.boot.pattern.util;
 
-import javax.annotation.PostConstruct;
+import java.util.List;
+import java.util.Optional;
 
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.boot.pattern.domain.signal.SignalMapBodyDomain;
-import com.boot.pattern.domain.signal.SignalMapBodyProxyDomain;
-import com.boot.pattern.service.SignalMapService;
-import com.boot.pattern.util.DayTimeUtil;
+import com.boot.pattern.domain.signal.detail.LaneSetDomain;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
-// http://mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/
-
-@SpringBootApplication
-@MapperScan(basePackages = "com.boot.pattern.mapper")
 @Slf4j
-public class BootMybatisPatternApplication {
-	@Autowired private SignalMapService signalMapService;
-	
-	@PostConstruct
-	public void start() throws Exception {
-		SignalMapBodyProxyDomain smbDomain = new SignalMapBodyProxyDomain();
+public class DataConvertUtil {
+	public static Object convertStringToObj(ObjectMapper om, Optional<String> content, Class<?> convertClass) {
+		Object result = null;
 		
-		smbDomain.setCenterId("seoul-cits-" + (int)(Math.random()*10000));
-		smbDomain.setCenterName("서울C-ITS");
-		smbDomain.setIntersectionId((int)(Math.random()*10000));
-		smbDomain.setIntersectionName("미정");
-		smbDomain.setCreationDate(DayTimeUtil.getCurDateTime("yyyyMMddHHmmss"));
-		smbDomain.setModifyDate(null);
-		smbDomain.setPushInfo(null);
-		smbDomain.setRefPoint(null);
-		smbDomain.setLaneSet("[\n" + 
+		try {
+			if(content.isPresent()) {
+				result = om.readValue(content.get(), convertClass);
+			}
+		} catch(Exception e) {
+			log.error("content : {}, exception : {}", content, e);
+		}
+		
+		return result;
+	}
+	
+	public static Object convertStringToObj(ObjectMapper om, Optional<String> content, TypeReference typeRef) {
+		Object result = null;
+		
+		try {
+			if(content.isPresent()) {
+				result = om.readValue(content.get(), typeRef);
+			}
+		} catch(Exception e) {
+			log.error("content : {}, exception : {}", content, e);
+		}
+		
+		return result;
+	}
+	
+	public static String convertObjToPrettyString(ObjectMapper om, Object param) {
+		String content = "";
+		
+		try {
+			content = om.writerWithDefaultPrettyPrinter().writeValueAsString(param);
+			//content = om.writeValueAsString(param);
+		} catch(Exception e) {
+			log.error("convertObjToString error!!!", content, e);
+			content = om.toString();
+		}
+		
+		return content;
+	}
+	
+	public static void main(String[] args) {
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		String param = "[\n" + 
 				"            {\n" + 
 				"               \"laneId\":1,\n" + 
 				"               \"directionalUse\":\"0\",\n" + 
@@ -86,17 +108,10 @@ public class BootMybatisPatternApplication {
 				"                     \"signalGroupId\":50\n" + 
 				"                  }\n" + 
 				"               ]\n" + 
-				"            }");
+				"            }]";
 		
-		//signalMapService.insertMapInfoCandidate(smbDomain);
+		List<LaneSetDomain> list = (List<LaneSetDomain>)convertStringToObj(objectMapper, Optional.of(param), new TypeReference<List<LaneSetDomain>>(){});
 		
-		SignalMapBodyProxyDomain smbResultDomain = signalMapService.selectMapInfoCandidate(smbDomain);
-		
-		log.info("smbResultDomain : {}", smbResultDomain);
+		System.out.println(list);
 	}
-	
-    public static void main(String[] args) {
-        SpringApplication.run(BootMybatisPatternApplication.class, args);
-    }
-
 }
