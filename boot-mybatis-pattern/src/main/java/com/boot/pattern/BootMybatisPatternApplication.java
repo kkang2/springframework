@@ -88,11 +88,11 @@ public class BootMybatisPatternApplication {
 				"               ]\n" + 
 				"            }");
 		
-		//signalMapService.insertMapInfoCandidate(smbDomain);
+		signalMapService.insertMapInfoCandidate(smbDomain);
 		
-		SignalMapBodyProxyDomain smbResultDomain = signalMapService.selectMapInfoCandidate(smbDomain);
+		//SignalMapBodyProxyDomain smbResultDomain = signalMapService.selectMapInfoCandidate(smbDomain);
 		
-		log.info("smbResultDomain : {}", smbResultDomain);
+		//log.info("smbResultDomain : {}", smbResultDomain);
 	}
 	
     public static void main(String[] args) {
