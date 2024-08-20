@@ -1,0 +1,20 @@
+[도커 image 다운로드]
+sudo docker pull redis <- 최신 버전
+
+[redis image 다운로드 확인]
+sudo docker images
+
+[도커 컨테이너 생성] -d : 데몬모드, --name : 컨테이너 이름, -p : 서버포트:컨테이너포트
+sudo docker run -d -p 6379:6379 --name docker_redis redis
+
+[도커 컨테이너 상태 확인]
+sudo docker ps -a
+
+[도커 컨테이너 실행]
+sudo docker start docker_redis
+
+[도커 컨테이너 종료]
+sudo docker stop docker_redis
+
+[redis 접속]
+sudo docker exec -it docker_redis /bin/bash
