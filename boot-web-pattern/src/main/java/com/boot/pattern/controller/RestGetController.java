@@ -8,6 +8,8 @@ public class RestGetController {
 	@GetMapping("/")
 	//@RequestMapping(value="/", method=RequestMethod.GET) 위와 동일 작동
 	public String hello() {
-		return "Hello World, from Spring boot web!";
+		
+		
+		return "Hello World, froddddm Spring boot web!";
 	}
 }
