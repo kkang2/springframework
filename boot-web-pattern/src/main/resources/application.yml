@@ -1,10 +1,10 @@
 server:
-  ssl:
-    enabled: true
-    key-store: classpath:devplatform.keystore.p12
-    key-store-password: devplatform!2
-    key-store-type: PKCS12
-  port: 44364
+#  ssl:
+#    enabled: true
+#    key-store: classpath:devplatform.keystore.p12
+#    key-store-password: devplatform!2
+#    key-store-type: PKCS12
+  port: 8080
 #  port: 9001
   tomcat:
     use-relative-redirects: true
@@ -28,5 +28,5 @@ spring:
     active: default
   application:
     name: pwp-csp
-  pid:
-    file: ./pwp-csp.pid
+#  pid:
+#    file: ./pwp-csp.pid
