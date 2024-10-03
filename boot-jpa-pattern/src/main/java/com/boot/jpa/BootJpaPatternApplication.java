@@ -1,4 +1,4 @@
-package com.boot.jpa.boot_jpa_pattern;
+package com.boot.jpa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

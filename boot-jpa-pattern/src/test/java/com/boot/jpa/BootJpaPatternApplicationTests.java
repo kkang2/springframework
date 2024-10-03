@@ -1,4 +1,4 @@
-package com.boot.jpa.boot_jpa_pattern;
+package com.boot.jpa;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
