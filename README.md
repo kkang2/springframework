@@ -31,3 +31,12 @@
 [생활안전정보] -> 집을 살려는 지역의 편의시설을 가지고 집의 점수를 메긴다..
 범죄주의구간(전체), 범죄주의구간(강도), 범죄주의구간(성폭력) -> https://safemap.go.kr/opna/data/dataList.do?pageIndex=2
 편의점 정보, 유아시설, 학교(초,중,고,기타), 학교(대학교), 병의원(종합병원)
+
+
+https://zdnet.co.kr/news/?lstcode=0020&page=1
+https://www.cio.com/kr
+https://www.itworld.co.kr/main
+https://it.chosun.com/
+http://www.itdaily.kr/news/articleList.html?sc_section_code=S1N3&view_type=sm
+https://m.ddaily.co.kr/opinion
+https://yozm.wishket.com/magazine
