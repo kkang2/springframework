@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class CommonConfiguration {
-
+/*
     @Bean("globalProperties")
     public Properties globalProperties() {
         return ModulePropertiesUtils.loadProperties("smartsuite/properties/global.properties");
@@ -26,5 +26,5 @@ public class CommonConfiguration {
     @Bean("smartsuiteProperties")
     public Properties smartsuiteProperties() {
         return ModulePropertiesUtils.loadProperties("smartsuite/properties/smartsuite.properties");
-    }
+    }*/
 }

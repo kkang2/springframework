@@ -5,7 +5,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
 @Configuration
-@PropertySource("classpath:dbConfig.properties")
+//@PropertySource("classpath:dbConfig.properties")
 public class DbConfiguration {
 	
 	@Autowired
